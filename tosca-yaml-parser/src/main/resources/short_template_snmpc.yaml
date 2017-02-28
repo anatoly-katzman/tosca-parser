@@ -1,0 +1,14 @@
+  node_templates:
+    collector:
+      type: dcae.nodes.dockerApp.Collector.SNMP
+      properties: 
+        appName: 
+        - {get_property: [SELF, source, appName]}
+        flowName: 
+        - {get_property: [SELF, source, flowName]}
+        output_hosts: {get_input: output_hosts}
+        output_topic: {get_input: output_topic}
+        output_user_key: {get_input: output_user_key}
+        output_user_secret: {get_input: output_user_secret}
+        output_consumer_group: {get_input: output_consumer_group}
+        output_consumer_id: {get_input: output_consumer_id}
