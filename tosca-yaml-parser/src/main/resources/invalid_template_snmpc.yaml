@@ -1,0 +1,74 @@
+  tosca_definitions_version: tosca_simple_yaml_1_0_0
+
+#metadata section: used for catalog tagging
+metadata:
+  template_name: snmp_collector
+  template_description: docker based snmp collector - pre-deployed and runtime re-configured
+  template_version: 1.0.0
+  template_author: Shu Shi
+  
+  asc_catalog: "{name:\"Collectors\"}"
+       
+imports:
+  - schema: schema.yaml
+  
+topology_template:
+
+#inputs here indicate that UI should ask user to input these values
+  inputs: 
+    output_hosts: 
+      type: string
+      default: "uebsb93kcdc.it.att.com:3904,uebsb92kcdc.it.att.com:3904,uebsb91kcdc.it.att.com:3904"
+    output_topic: 
+      type: string
+      default:  "DCAE-HIGHLANDPARK-EVENT-OUTPUT-SI4699"
+    output_user_key:
+      type: string
+      default: "NONE"
+    output_user_secret:
+      type: string 
+      default: "NONE"
+    output_consumer_group: 
+      type: string
+      default: "SI4699-TEST-CDAP-01"
+    output_consumer_id:
+      type: string
+      default: "4699"
+ 
+  node_templates:             
+    collector:
+      type: dcae.nodes.dockerApp.Collector.SNMP
+      properties: 
+        appName: 
+        - {get_property: [SELF, source, appName]}
+        flowName: 
+        - {get_property: [SELF, source, flowName]}
+        output_hosts: {get_input: output_hosts}
+        output_topic: {get_input: output_topic}
+        output_user_key: {get_input: output_user_key}
+        output_user_secret: {get_input: output_user_secret}
+        output_consumer_group: {get_input: output_consumer_group}
+        output_consumer_id: {get_input: output_consumer_id}
+          
+      capabilities: 
+        output: 
+          properties: 
+#dataformat matching can be added here
+            deliveryMechanism: "stream"
+            polling: "push"
+            topic: {get_input: output_topic}
+            
+      requirements: 
+      - source: 
+          capability: dcae.capabilities.dataSource
+          node_filter:
+            capabilities:
+              - dataSource: 
+                  properties: 
+                    - type: 
+                      - equal: "SNMP"
+          
+
+
+    
+

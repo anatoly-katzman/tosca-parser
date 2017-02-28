@@ -38,8 +38,8 @@ public class TrySnakeyaml {
         System.out.println("end");
     }
 
-    private void tryYamlParser22() throws FileNotFoundException {
-        System.out.println("start");
+    private void tryYamlOnInvalidInput() throws FileNotFoundException {
+        System.out.println("start!");
         String testFile = "C:\\MyProjects\\tosca-parser\\tosca-yaml-parser\\src\\main\\resources\\template_snmpc.yaml";
 
         FileReader reader = new FileReader(new File(testFile));
@@ -47,7 +47,7 @@ public class TrySnakeyaml {
         Yaml yaml = new Yaml();
         Object load = yaml.load(reader);
 
-        System.out.println("end");
+        System.out.println("end!");
     }
 
 }
