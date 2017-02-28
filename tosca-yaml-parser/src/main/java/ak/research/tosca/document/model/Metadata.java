@@ -1,6 +1,4 @@
-package tosca.document.model;
-
-import ak.research.yamlparser.Position;
+package ak.research.tosca.document.model;
 
 import java.util.Map;
 

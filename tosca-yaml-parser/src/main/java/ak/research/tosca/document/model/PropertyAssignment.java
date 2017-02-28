@@ -1,4 +1,4 @@
-package tosca.document.model;
+package ak.research.tosca.document.model;
 
 import java.util.Map;
 
