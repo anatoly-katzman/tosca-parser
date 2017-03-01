@@ -1,0 +1,13 @@
+data_types:
+  # list of datatype definitions
+
+  # define a new datatype that derives from existing type and extends it
+  mytypes.phonenumber.extended:
+    derived_from: mytypes.phonenumber
+    description: custom phone number type that extends the basic phonenumber type
+    properties:
+      phone_description:
+        type: string
+        constraints:
+          - max_length: 128
+

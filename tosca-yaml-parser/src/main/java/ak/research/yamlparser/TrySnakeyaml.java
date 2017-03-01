@@ -29,7 +29,8 @@ public class TrySnakeyaml {
     private void tryYamlParser() throws FileNotFoundException {
         System.out.println("start");
 //        String testFile = "C:\\MyProjects\\tosca-parser\\tosca-yaml-parser\\src\\main\\resources\\template_snmpc.yaml";
-        String testFile = "C:\\MyProjects\\tosca-parser\\tosca-yaml-parser\\src\\main\\resources\\short_template_snmpc.yaml";
+//        String testFile = "C:\\MyProjects\\tosca-parser\\tosca-yaml-parser\\src\\main\\resources\\short_template_snmpc.yaml";
+        String testFile = "C:\\MyProjects\\tosca-parser\\tosca-yaml-parser\\src\\main\\resources\\tosca_sample.yml";
         YamlParser parser = new YamlParser();
         Iterable<YamlParsingEvent> events = parser.parse(new FileReader(new File(testFile)), testFile);
         for (YamlParsingEvent event : events) {
